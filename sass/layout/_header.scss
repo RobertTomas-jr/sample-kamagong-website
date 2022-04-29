@@ -1,0 +1,141 @@
+@use '../lib/config' as *;
+@use '../lib/breakpoints' as *;
+@use '../lib/mixin' as *;
+
+header {
+    background-color: #1e1e1e;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99; 
+    padding: 0 1.8em;
+    @include flexspacebetween;
+
+    .logo{
+        width: 80px;
+        height: 80px;
+        z-index: 99;
+        
+        img {
+           width: 100%;
+           height: 100%; 
+           object-fit: contain;
+           border-radius: 50%;
+           
+        }  
+    }
+//menu list
+    .nav-menu{
+       padding:5em 0;
+       transform: translateX(120%);
+       width: 50%;
+       height: 100vh;
+       position: absolute;
+       top: 0;
+       right: 0;
+       transition: transform 0.1s linear;
+
+        .nav-link {
+            text-align: center;
+            color: #ffffff;
+            display: block;
+            padding: 1em 0;
+            @include transition-ease;
+
+            &:hover {
+               
+                color: #6677bc;
+            }
+           
+        }
+
+       &.open {
+        transform: translateX(0);
+        background-color: #1e1e1e;
+        @include transition-ease;
+       }
+
+    } 
+//menu button
+    .hamburger {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 1em;
+        right: 1.8em;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        @include transition-ease;
+        z-index: 5;
+        
+        .navlink-hamburger,
+        .navlink-hamburger::before {
+            width: 30px;
+            height: 4px;
+            background-color: #ffffff;
+            border-radius: 50px;
+            @include transition-ease;
+        }
+        
+        .navlink-hamburger::after {   
+            width: 20px;
+            height: 4px;
+            background-color: #ffffff;
+            border-radius: 50px;
+            @include transition-ease;
+            margin-left: 10px; 
+        }
+        .navlink-hamburger::before, 
+        .navlink-hamburger::after {
+            content: "";
+            position: absolute;
+            
+        }
+        .navlink-hamburger::before {
+            transform: translateY(-0.6rem);
+        }
+
+        .navlink-hamburger::after {
+            transform: translateY(0.6rem);    
+        }
+
+        &.open .navlink-hamburger{
+            background-color: transparent;
+        }
+        &.open .navlink-hamburger::before {
+            transform: rotate(45deg);
+        }
+        &.open .navlink-hamburger::after {
+            transform: rotate(-45deg);
+            width: 30px;
+            margin-left: 0;
+        }
+    }  
+    @include tablet {   
+            .hamburger {
+                display: none;     
+                .navlink-hamburger, .navlink-hamburger::after, 
+                .navlink-hamburger::before {
+                    display: none;
+                }
+                
+            }
+            .nav-menu {
+                width: 100%;
+                transform: translateX(0);
+                height: 100%;
+                padding:2em 1.8em;
+                text-align: right;
+               
+                .nav-link {
+                    padding: 1em;
+                    display: inline;  
+                }    
+            }
+    }       
+}
+

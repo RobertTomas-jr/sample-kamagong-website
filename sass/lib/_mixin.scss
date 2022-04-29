@@ -1,0 +1,10 @@
+@mixin flexspacebetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin transition-ease {
+    transition: 00.2s ease-in-out;
+}
+
